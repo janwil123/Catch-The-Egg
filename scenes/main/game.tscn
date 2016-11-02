@@ -1,18 +1,15 @@
-[gd_scene load_steps=14 format=1]
+[gd_scene load_steps=16 format=1]
 
 [ext_resource path="res://assets/images/bg.png" type="Texture" id=1]
-[ext_resource path="res://assets/images/egg.png" type="Texture" id=2]
+[ext_resource path="res://scripts/basket.gd" type="Script" id=2]
 [ext_resource path="res://assets/images/basket.png" type="Texture" id=3]
+[ext_resource path="res://scripts/eggspawner.gd" type="Script" id=4]
+[ext_resource path="res://scenes/egg.tscn" type="PackedScene" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
 extents = Vector2( 320.629, 102.426 )
-
-[sub_resource type="CircleShape2D" id=2]
-
-custom_solver_bias = 0.0
-radius = 25.0756
 
 [sub_resource type="ConvexPolygonShape2D" id=3]
 
@@ -53,6 +50,11 @@ points = Vector2Array( -43.9208, -10.1959, -46.0717, -21.6674, -39.6189, -22.384
 
 custom_solver_bias = 0.0
 points = Vector2Array( -33.1662, 3.42659, -38.902, 4.86053, -37.468, -10.1959 )
+
+[sub_resource type="CircleShape2D" id=11]
+
+custom_solver_bias = 0.0
+radius = 10.0
 
 [node name="main" type="Node2D"]
 
@@ -102,45 +104,9 @@ shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
 
-[node name="RigidBody2D" type="RigidBody2D" parent="."]
-
-transform/pos = Vector2( 312.019, 99.4844 )
-transform/scale = Vector2( 1, 1 )
-input/pickable = false
-shapes/0/shape = SubResource( 2 )
-shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
-shapes/0/trigger = false
-collision/layers = 1
-collision/mask = 1
-mode = 0
-mass = 1.0
-friction = 1.0
-bounce = 0.0
-gravity_scale = 1.0
-custom_integrator = false
-continuous_cd = 0
-contacts_reported = 0
-contact_monitor = false
-sleeping = false
-can_sleep = true
-velocity/linear = Vector2( 0, 0 )
-velocity/angular = 0.0
-damp_override/linear = -1.0
-damp_override/angular = -1.0
-
-[node name="Sprite" type="Sprite" parent="RigidBody2D"]
-
-texture = ExtResource( 2 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
-
-shape = SubResource( 2 )
-trigger = false
-_update_shape_index = 0
-
 [node name="basket" type="KinematicBody2D" parent="."]
 
-transform/pos = Vector2( 303.93, 711.498 )
+transform/pos = Vector2( 438.93, 702.498 )
 input/pickable = false
 shapes/0/shape = SubResource( 3 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
@@ -169,6 +135,7 @@ shapes/7/trigger = false
 collision/layers = 1
 collision/mask = 1
 collision/margin = 0.08
+script/script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="basket"]
 
@@ -180,5 +147,30 @@ build_mode = 0
 polygon = Vector2Array( 46.0592, -20.9505, 42.1158, -0.875244, 31.7198, 14.5396, 12.72, 24.9357, -7.71368, 25.6527, -26.7134, 18.483, -38.902, 4.86053, -43.9208, -10.1959, -46.0717, -21.6674, -39.6189, -22.3844, -37.468, -10.1959, -33.1662, 3.42659, -24.5625, 13.4642, -9.50612, 20.6339, 10.5691, 20.2754, 27.7764, 11.3133, 37.097, -3.38464, 41.7574, -23.1014 )
 shape_range = Vector2( 0, 7 )
 trigger = false
+
+[node name="Area2D" type="Area2D" parent="basket"]
+
+input/pickable = true
+shapes/0/shape = SubResource( 11 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="basket/Area2D"]
+
+shape = SubResource( 11 )
+trigger = false
+_update_shape_index = 0
+
+[node name="EggSpawner" type="Node" parent="."]
+
+script/script = ExtResource( 4 )
+delay = 1
+egg = ExtResource( 5 )
+
+[connection signal="body_enter" from="basket/Area2D" to="basket" method="_on_Area2D_body_enter"]
 
 
