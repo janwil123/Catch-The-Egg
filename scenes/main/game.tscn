@@ -1,57 +1,59 @@
-[gd_scene load_steps=16 format=1]
+[gd_scene load_steps=18 format=1]
 
 [ext_resource path="res://assets/images/bg.png" type="Texture" id=1]
 [ext_resource path="res://scripts/basket.gd" type="Script" id=2]
 [ext_resource path="res://assets/images/basket.png" type="Texture" id=3]
 [ext_resource path="res://scripts/eggspawner.gd" type="Script" id=4]
 [ext_resource path="res://scenes/egg.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/fonts/gamefont.fnt" type="BitmapFont" id=6]
+[ext_resource path="res://scripts/score.gd" type="Script" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
 extents = Vector2( 320.629, 102.426 )
 
-[sub_resource type="ConvexPolygonShape2D" id=3]
+[sub_resource type="ConvexPolygonShape2D" id=2]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 37.097, -3.38464, 41.7574, -23.1014, 46.0592, -20.9505, 42.1158, -0.875244 )
 
-[sub_resource type="ConvexPolygonShape2D" id=4]
+[sub_resource type="ConvexPolygonShape2D" id=3]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 37.097, -3.38464, 42.1158, -0.875244, 31.7198, 14.5396, 27.7764, 11.3133 )
 
-[sub_resource type="ConvexPolygonShape2D" id=5]
+[sub_resource type="ConvexPolygonShape2D" id=4]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 27.7764, 11.3133, 31.7198, 14.5396, 12.72, 24.9357, 10.5691, 20.2754 )
 
-[sub_resource type="ConvexPolygonShape2D" id=6]
+[sub_resource type="ConvexPolygonShape2D" id=5]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 10.5691, 20.2754, 12.72, 24.9357, -7.71368, 25.6527, -9.50612, 20.6339 )
 
-[sub_resource type="ConvexPolygonShape2D" id=7]
+[sub_resource type="ConvexPolygonShape2D" id=6]
 
 custom_solver_bias = 0.0
 points = Vector2Array( -9.50612, 20.6339, -7.71368, 25.6527, -26.7134, 18.483, -24.5625, 13.4642 )
 
-[sub_resource type="ConvexPolygonShape2D" id=8]
+[sub_resource type="ConvexPolygonShape2D" id=7]
 
 custom_solver_bias = 0.0
 points = Vector2Array( -24.5625, 13.4642, -26.7134, 18.483, -38.902, 4.86053, -33.1662, 3.42659 )
 
-[sub_resource type="ConvexPolygonShape2D" id=9]
+[sub_resource type="ConvexPolygonShape2D" id=8]
 
 custom_solver_bias = 0.0
 points = Vector2Array( -43.9208, -10.1959, -46.0717, -21.6674, -39.6189, -22.3844, -37.468, -10.1959, -38.902, 4.86053 )
 
-[sub_resource type="ConvexPolygonShape2D" id=10]
+[sub_resource type="ConvexPolygonShape2D" id=9]
 
 custom_solver_bias = 0.0
 points = Vector2Array( -33.1662, 3.42659, -38.902, 4.86053, -37.468, -10.1959 )
 
-[sub_resource type="CircleShape2D" id=11]
+[sub_resource type="CircleShape2D" id=10]
 
 custom_solver_bias = 0.0
 radius = 10.0
@@ -108,28 +110,28 @@ _update_shape_index = 0
 
 transform/pos = Vector2( 438.93, 702.498 )
 input/pickable = false
-shapes/0/shape = SubResource( 3 )
+shapes/0/shape = SubResource( 2 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
-shapes/1/shape = SubResource( 4 )
+shapes/1/shape = SubResource( 3 )
 shapes/1/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/1/trigger = false
-shapes/2/shape = SubResource( 5 )
+shapes/2/shape = SubResource( 4 )
 shapes/2/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/2/trigger = false
-shapes/3/shape = SubResource( 6 )
+shapes/3/shape = SubResource( 5 )
 shapes/3/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/3/trigger = false
-shapes/4/shape = SubResource( 7 )
+shapes/4/shape = SubResource( 6 )
 shapes/4/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/4/trigger = false
-shapes/5/shape = SubResource( 8 )
+shapes/5/shape = SubResource( 7 )
 shapes/5/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/5/trigger = false
-shapes/6/shape = SubResource( 9 )
+shapes/6/shape = SubResource( 8 )
 shapes/6/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/6/trigger = false
-shapes/7/shape = SubResource( 10 )
+shapes/7/shape = SubResource( 9 )
 shapes/7/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/7/trigger = false
 collision/layers = 1
@@ -151,7 +153,7 @@ trigger = false
 [node name="Area2D" type="Area2D" parent="basket"]
 
 input/pickable = true
-shapes/0/shape = SubResource( 11 )
+shapes/0/shape = SubResource( 10 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
@@ -161,7 +163,7 @@ angular_damp = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="basket/Area2D"]
 
-shape = SubResource( 11 )
+shape = SubResource( 10 )
 trigger = false
 _update_shape_index = 0
 
@@ -170,6 +172,22 @@ _update_shape_index = 0
 script/script = ExtResource( 4 )
 delay = 1
 egg = ExtResource( 5 )
+
+[node name="Label" type="Label" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 91.0
+margin/top = 252.0
+margin/right = 131.0
+margin/bottom = 266.0
+custom_fonts/font = ExtResource( 6 )
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+script/script = ExtResource( 7 )
 
 [connection signal="body_enter" from="basket/Area2D" to="basket" method="_on_Area2D_body_enter"]
 

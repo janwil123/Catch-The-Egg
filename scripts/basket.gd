@@ -16,4 +16,7 @@ func _process(delta):
 
 func _on_Area2D_body_enter( b ):
 	if(b.is_in_group("eggs")):
+		global.score += 1
+		
+		print(global.score)
 		b.queue_free()
